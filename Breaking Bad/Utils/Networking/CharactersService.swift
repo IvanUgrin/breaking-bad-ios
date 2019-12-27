@@ -6,7 +6,7 @@
 //
 
 class CharactersService: BaseService {
-    func index(seachText: String?, page: Int = 0, perPage: Int = 10, completion: @escaping Result<Character>) {
+    func index(seachText: String? = nil, page: Int = 0, perPage: Int = 10, completion: @escaping Result<Character>) {
         var parameters = Parameters()
 
         if let searchText = seachText {
