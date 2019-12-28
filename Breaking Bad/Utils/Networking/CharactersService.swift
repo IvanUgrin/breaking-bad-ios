@@ -18,7 +18,7 @@ class CharactersService: BaseService {
         }
 
         request(.characters, parameters: parameters) { json in
-            completion(json?.array?.compactMap { self.parseObjects(json: $0) })
+            completion(json?.array?.compactMap { self.parseObject(json: $0) })
         }
     }
 }

@@ -9,6 +9,7 @@ target 'Breaking Bad' do
   
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'AlamofireImage'
 
   target 'Breaking BadTests' do
     inherit! :search_paths

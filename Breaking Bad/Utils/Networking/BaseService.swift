@@ -47,7 +47,7 @@ class BaseService {
             })
     }
 
-    internal func parseObjects<T: ModelSerializable>(json: JSON) -> T {
+    internal func parseObject<T: ModelSerializable>(json: JSON) -> T {
         return T(json)
     }
 }
