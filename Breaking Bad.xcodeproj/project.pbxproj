@@ -13,6 +13,7 @@
 		441254A923A98F1B0081F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441254A723A98F1B0081F4AC /* LaunchScreen.storyboard */; };
 		441448AD23B7D24100B6CCC2 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441448AC23B7D24100B6CCC2 /* Debouncer.swift */; };
 		441448B023B8C63800B6CCC2 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441448AF23B8C63800B6CCC2 /* Array+Extensions.swift */; };
+		441448B223B8F56A00B6CCC2 /* CharacterListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441448B123B8F56A00B6CCC2 /* CharacterListUITests.swift */; };
 		44A6BFF523AB781300BAD4FC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF423AB781300BAD4FC /* BaseService.swift */; };
 		44A6BFF723AB783B00BAD4FC /* CharactersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF623AB783B00BAD4FC /* CharactersService.swift */; };
 		44A6BFFA23AB785E00BAD4FC /* Fake_CharactersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF923AB785E00BAD4FC /* Fake_CharactersService.swift */; };
@@ -54,6 +55,7 @@
 		441254B523A98F1C0081F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441448AC23B7D24100B6CCC2 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		441448AF23B8C63800B6CCC2 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		441448B123B8F56A00B6CCC2 /* CharacterListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListUITests.swift; sourceTree = "<group>"; };
 		44A6BFF423AB781300BAD4FC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		44A6BFF623AB783B00BAD4FC /* CharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersService.swift; sourceTree = "<group>"; };
 		44A6BFF923AB785E00BAD4FC /* Fake_CharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fake_CharactersService.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				44A6BFF823AB785000BAD4FC /* Fakers */,
 				441254B523A98F1C0081F4AC /* Info.plist */,
 				44A6C00D23B796ED00BAD4FC /* CharacterListTests.swift */,
+				441448B123B8F56A00B6CCC2 /* CharacterListUITests.swift */,
 				44A6C01123B7C6C800BAD4FC /* CharacterListDataSourceTests.swift */,
 			);
 			path = "Breaking BadTests";
@@ -269,6 +272,7 @@
 				441254AB23A98F1C0081F4AC /* Sources */,
 				441254AC23A98F1C0081F4AC /* Frameworks */,
 				441254AD23A98F1C0081F4AC /* Resources */,
+				E169566EF6328A7A962E44F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -378,6 +382,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E169566EF6328A7A962E44F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Breaking BadTests/Pods-Breaking BadTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Breaking BadTests/Pods-Breaking BadTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Breaking BadTests/Pods-Breaking BadTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FCB38D3EE7A623CB3F5FE0CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A6C01223B7C6C800BAD4FC /* CharacterListDataSourceTests.swift in Sources */,
+				441448B223B8F56A00B6CCC2 /* CharacterListUITests.swift in Sources */,
 				44A6C00923B67DAB00BAD4FC /* BaseService+Extensions.swift in Sources */,
 				44A6BFFA23AB785E00BAD4FC /* Fake_CharactersService.swift in Sources */,
 				44A6C00E23B796ED00BAD4FC /* CharacterListTests.swift in Sources */,

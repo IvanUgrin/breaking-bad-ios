@@ -14,6 +14,9 @@ target 'Breaking Bad' do
   target 'Breaking BadTests' do
     inherit! :search_paths
     # Pods for testing
+    
+    pod 'iOSSnapshotTestCase'
+    
   end
 
 end
