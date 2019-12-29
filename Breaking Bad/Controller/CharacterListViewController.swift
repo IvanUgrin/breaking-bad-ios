@@ -14,8 +14,8 @@ class CharacterListViewController: UIViewController {
     var service: CharactersService?
     var dataSource = CharacterListDataSource()
     let debouncer = Debouncer(seconds: 1.5)
-    var page = 0
-    static let perPage = 10
+//    var page = 0
+//    static let perPage = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,19 @@ class CharacterListViewController: UIViewController {
     }
     
     private func reloadData(fromStart: Bool) {
-        page = fromStart ? 0 : page + 1
-
-        service?.index(page: page, perPage: Self.perPage, completion: { characters in
+        /// Pagination implementation
+//        page = fromStart ? 0 : page + 1
+//
+//        service?.index(page: page, perPage: Self.perPage, completion: { characters in
+//            guard let characters = characters else { return }
+//            if fromStart {
+//                self.dataSource = CharacterListDataSource()
+//            }
+//            self.dataSource.characters.append(contentsOf: characters)
+//            self.tblCharacters.reloadData()
+//        })
+        
+        service?.index(completion: { characters in
             guard let characters = characters else { return }
             if fromStart {
                 self.dataSource = CharacterListDataSource()
@@ -96,15 +106,15 @@ extension CharacterListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CharacterListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if searchBar.text?.count ?? 0 > 0 || dataSource.characters.count % Self.perPage > 0 {
-            return
-        }
-        
-        if indexPath.row == (dataSource.characters.count - 1) {
-            reloadData(fromStart: false)
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if searchBar.text?.count ?? 0 > 0 || dataSource.characters.count % Self.perPage > 0 {
+//            return
+//        }
+//
+//        if indexPath.row == (dataSource.characters.count - 1) {
+//            reloadData(fromStart: false)
+//        }
+//    }
     
     func tableView(_: UITableView, didSelectRowAt _: IndexPath) {
         

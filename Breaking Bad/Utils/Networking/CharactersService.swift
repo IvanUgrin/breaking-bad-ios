@@ -6,13 +6,13 @@
 //
 
 class CharactersService: BaseService {
-    func index(seachText: String? = nil, page: Int = 0, perPage: Int = 10, completion: @escaping Result<Character>) {
+    func index(seachText: String? = nil, page: Int? = nil, perPage: Int = 10, completion: @escaping Result<Character>) {
         var parameters = Parameters()
 
         if let searchText = seachText {
             /// From BB api docs: Notice the 'plus sign' between the first and last name represents a space.
             parameters["name"] = searchText.replacingOccurrences(of: " ", with: "+")
-        } else {
+        } else if let page = page {
             parameters["limit"] = perPage
             parameters["offset"] = page * perPage
         }
