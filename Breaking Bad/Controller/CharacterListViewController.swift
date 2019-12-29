@@ -7,14 +7,13 @@
 
 import UIKit
 
-protocol CharacterListPaginator {
-    func loadPage(_ page: Int)
-}
-
 class CharacterListViewController: UIViewController {
     @IBOutlet var tblCharacters: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    
     var service: CharactersService?
     var dataSource = CharacterListDataSource()
+    let debouncer = Debouncer(seconds: 1.5)
     var page = 0
     static let perPage = 10
 
@@ -22,7 +21,10 @@ class CharacterListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        setup()
+    }
+    
+    private func setup() {
         if service == nil {
             service = CharactersService()
             reloadData(fromStart: true)
@@ -30,6 +32,8 @@ class CharacterListViewController: UIViewController {
         
         tblCharacters.delegate = self
         tblCharacters.dataSource = self
+        
+        searchBar.delegate = self
     }
     
     private func reloadData(fromStart: Bool) {
@@ -56,26 +60,29 @@ class CharacterListViewController: UIViewController {
      */
 }
 
+// MARK: - UITableViewDataSource
 extension CharacterListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.numberOfItemsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CharacterTableViewCell.self), for: indexPath) as? CharacterTableViewCell else {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CharacterTableViewCell.self), for: indexPath) as? CharacterTableViewCell,
+            let character = dataSource.itemForIndexPath(indexPath.row)
+            else {
             return tableView.dequeueReusableCell(withIdentifier: String(describing: CharacterTableViewCell.self), for: indexPath)
         }
-        
-        let character = dataSource.itemForIndexPath(indexPath.row)
         cell.setup(character)
         
         return cell
     }
 }
 
+// MARK: - UITableViewDelegate
 extension CharacterListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if dataSource.characters.count % Self.perPage > 0 {
+        if searchBar.text?.count ?? 0 > 0 || dataSource.characters.count % Self.perPage > 0 {
             return
         }
         
@@ -89,6 +96,24 @@ extension CharacterListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension CharacterListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        debouncer.debounce {
+            if searchText.count > 0 {
+                self.service?.index(seachText: searchText, completion: { (characters) in
+                    self.dataSource = CharacterListDataSource(characters: characters ?? [])
+                    self.tblCharacters.reloadData()
+                })
+            }
+            else {
+                self.reloadData(fromStart: true)
+            }
+        }
+    }
+}
+
+// MARK: - CharacterListDataSource
 class CharacterListDataSource: NSObject {
     var characters = [Character]()
     
@@ -102,7 +127,9 @@ class CharacterListDataSource: NSObject {
         return characters.count
     }
 
-    func itemForIndexPath(_ index: Int) -> Character {
+    func itemForIndexPath(_ index: Int) -> Character? {
+        guard 0 ..< characters.count ~= index else { return nil }
+        
         return characters[index]
     }
 }

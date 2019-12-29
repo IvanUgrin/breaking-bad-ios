@@ -25,10 +25,16 @@ class CharacterListDataSourceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_rowsInOutOfBoundsSectionIsZero() {
-        dataSource = CharacterListDataSource()
+    func test_sectionsInOutOfBoundsSectionIsZero() {
+        dataSource = CharacterListDataSource(characters: fixtures)
         XCTAssertEqual(dataSource.numberOfItemsInSection(-1), 0)
         XCTAssertEqual(dataSource.numberOfItemsInSection(1), 0)
+    }
+
+    func test_rowsInOutOfBoundsSectionIsZero() {
+        dataSource = CharacterListDataSource(characters: fixtures)
+        XCTAssertEqual(dataSource.itemForIndexPath(-1), nil)
+        XCTAssertEqual(dataSource.itemForIndexPath(fixtures.count), nil)
     }
     
     func test_dataSourceHasCorrectObjects() {

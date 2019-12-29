@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mRP-fh-oT6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mRP-fh-oT6">
                                 <rect key="frame" x="0.0" y="56" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -107,6 +107,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Characters" id="WXu-Kl-BPn"/>
                     <connections>
+                        <outlet property="searchBar" destination="oLt-xf-qtu" id="27v-5G-70I"/>
                         <outlet property="tblCharacters" destination="mRP-fh-oT6" id="Nts-sM-R9l"/>
                     </connections>
                 </viewController>

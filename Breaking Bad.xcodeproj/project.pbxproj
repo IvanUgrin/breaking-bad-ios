@@ -11,6 +11,7 @@
 		441254A423A98F1A0081F4AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441254A223A98F1A0081F4AC /* Main.storyboard */; };
 		441254A623A98F1B0081F4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441254A523A98F1B0081F4AC /* Assets.xcassets */; };
 		441254A923A98F1B0081F4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441254A723A98F1B0081F4AC /* LaunchScreen.storyboard */; };
+		441448AD23B7D24100B6CCC2 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441448AC23B7D24100B6CCC2 /* Debouncer.swift */; };
 		44A6BFF523AB781300BAD4FC /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF423AB781300BAD4FC /* BaseService.swift */; };
 		44A6BFF723AB783B00BAD4FC /* CharactersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF623AB783B00BAD4FC /* CharactersService.swift */; };
 		44A6BFFA23AB785E00BAD4FC /* Fake_CharactersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6BFF923AB785E00BAD4FC /* Fake_CharactersService.swift */; };
@@ -50,6 +51,7 @@
 		441254AA23A98F1B0081F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441254AF23A98F1C0081F4AC /* Breaking BadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Breaking BadTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441254B523A98F1C0081F4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		441448AC23B7D24100B6CCC2 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		44A6BFF423AB781300BAD4FC /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		44A6BFF623AB783B00BAD4FC /* CharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersService.swift; sourceTree = "<group>"; };
 		44A6BFF923AB785E00BAD4FC /* Fake_CharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fake_CharactersService.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				44A6BFF323AB780500BAD4FC /* Networking */,
 				44A6BFFB23B3B0F700BAD4FC /* Constants.swift */,
+				441448AC23B7D24100B6CCC2 /* Debouncer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				44A6BFFC23B3B0F700BAD4FC /* Constants.swift in Sources */,
 				44A6C00023B3C03700BAD4FC /* Character.swift in Sources */,
 				44A6C00C23B68E7B00BAD4FC /* CharacterTableViewCell.swift in Sources */,
+				441448AD23B7D24100B6CCC2 /* Debouncer.swift in Sources */,
 				44A6BFFE23B3BFCC00BAD4FC /* ModelSerializable.swift in Sources */,
 				44A6C00723B6795F00BAD4FC /* CharacterListViewController.swift in Sources */,
 				4412549D23A98F1A0081F4AC /* AppDelegate.swift in Sources */,
