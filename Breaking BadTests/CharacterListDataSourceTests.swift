@@ -51,4 +51,22 @@ class CharacterListDataSourceTests: XCTestCase {
             index += 1
         })
     }
+    
+    func test_dataSourceFilterIsMatchingSeasons() {
+        let testableFixtures = fixtures
+        testableFixtures?.first?.appearance = [1000]
+        testableFixtures?.last?.appearance = [1001]
+        dataSource = CharacterListDataSource(characters: testableFixtures!)
+        dataSource.toggleSeason(1000)
+        dataSource.toggleSeason(1001)
+        XCTAssertEqual(2, dataSource.numberOfItemsInSection(0))
+        XCTAssertEqual(testableFixtures?.first, dataSource.itemForIndexPath(0))
+        XCTAssertEqual(testableFixtures?.last, dataSource.itemForIndexPath(1))
+    }
+    
+    func test_dataSourceSelectIncorrectSeason() {
+        dataSource = CharacterListDataSource(characters: fixtures)
+        dataSource.toggleSeason(-1)
+        XCTAssertTrue(!dataSource.selectedFilters.contains(-1))
+    }
 }

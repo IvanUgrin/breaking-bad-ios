@@ -48,7 +48,7 @@ class CharacterListViewController: UIViewController {
             self.tblCharacters.reloadData()
         })
     }
-
+    
     /*
      // MARK: - Navigation
 
@@ -58,6 +58,21 @@ class CharacterListViewController: UIViewController {
          // Pass the selected object to the new view controller.
      }
      */
+    
+     @IBAction func onFilter(_ sender: Any) {
+        let actionController = UIAlertController(title: "Filter by season", message: nil, preferredStyle: .actionSheet)
+        dataSource
+            .getSeasons()
+            .forEach({ (season) in
+                let selected = (dataSource.selectedFilters.contains(season)) ? "✅" : ""
+                actionController.addAction(UIAlertAction(title: "Season \(season) \(selected)", style: .default, handler: { (action) in
+                    self.dataSource.toggleSeason(season)
+                    self.tblCharacters.reloadData()
+                }))
+            })
+        actionController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(actionController, animated: true, completion: nil)
+     }
 }
 
 // MARK: - UITableViewDataSource
@@ -116,6 +131,8 @@ extension CharacterListViewController: UISearchBarDelegate {
 // MARK: - CharacterListDataSource
 class CharacterListDataSource: NSObject {
     var characters = [Character]()
+    var filteredCharacters = [Character]()
+    var selectedFilters = [Int]()
     
     init(characters: [Character] = [Character]()) {
         self.characters = characters
@@ -124,12 +141,39 @@ class CharacterListDataSource: NSObject {
     func numberOfItemsInSection(_ section: Int) -> Int {
         guard section == 0 else { return 0 }
         
+        if selectedFilters.count > 0 {
+            return filteredCharacters.count
+        }
+        
         return characters.count
     }
 
     func itemForIndexPath(_ index: Int) -> Character? {
         guard 0 ..< characters.count ~= index else { return nil }
         
+        if selectedFilters.count > 0 {
+            return filteredCharacters[index]
+        }
+        
         return characters[index]
+    }
+    
+    func toggleSeason(_ season:Int) {
+        guard getSeasons().contains(season) else { return }
+        
+        if selectedFilters.contains(season) {
+            selectedFilters.removeAll(where: { $0 == season })
+        }
+        else {
+            selectedFilters.append(season)
+        }
+        filteredCharacters = characters.filter({ ($0.appearance?.contains(where: { selectedFilters.contains($0) }) ?? false) })
+    }
+    
+    func getSeasons() -> [Int] {
+        return characters
+        .flatMap({ $0.appearance ?? [] })
+        .removingDuplicates()
+        .sorted(by: { $0 > $1 })
     }
 }
