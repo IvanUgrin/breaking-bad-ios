@@ -8,18 +8,20 @@
 import Foundation
 
 class Debouncer {
-
     // MARK: - Properties
+
     private let queue = DispatchQueue.main
     private var workItem = DispatchWorkItem(block: {})
     private var interval: TimeInterval
 
     // MARK: - Initializer
+
     init(seconds: TimeInterval) {
-        self.interval = seconds
+        interval = seconds
     }
 
     // MARK: - Debouncing function
+
     func debounce(action: @escaping (() -> Void)) {
         workItem.cancel()
         workItem = DispatchWorkItem(block: { action() })

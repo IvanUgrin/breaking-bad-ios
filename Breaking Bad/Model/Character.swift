@@ -11,22 +11,29 @@ import SwiftyJSON
 class Character: ModelSerializable, Equatable {
     static func == (lhs: Character, rhs: Character) -> Bool {
         return (
-        lhs.id == rhs.id &&
-        lhs.name == rhs.name &&
-        lhs.birthdate == rhs.birthdate &&
-        lhs.occupation == rhs.occupation &&
-        lhs.imageUrl == rhs.imageUrl &&
-        lhs.status == rhs.status &&
-        lhs.appearance == rhs.appearance &&
-        lhs.nickname == rhs.nickname &&
-        lhs.portrayed == rhs.portrayed &&
-        lhs.category == rhs.category
+            lhs.id == rhs.id &&
+                lhs.name == rhs.name &&
+                lhs.birthdate == rhs.birthdate &&
+                lhs.occupation == rhs.occupation &&
+                lhs.imageUrl == rhs.imageUrl &&
+                lhs.status == rhs.status &&
+                lhs.appearance == rhs.appearance &&
+                lhs.nickname == rhs.nickname &&
+                lhs.portrayed == rhs.portrayed &&
+                lhs.category == rhs.category
         )
     }
-    
+
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm-dd-yyyy"
+
+        return dateFormatter
+    }()
+
+    private static let presentationDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
 
         return dateFormatter
     }()
@@ -64,5 +71,11 @@ class Character: ModelSerializable, Equatable {
             let date = Self.dateFormatter.date(from: birthdayString) {
             birthdate = date
         }
+    }
+
+    func formattedDate() -> String? {
+        guard let birthdate = birthdate else { return nil }
+
+        return Self.presentationDateFormatter.string(from: birthdate)
     }
 }

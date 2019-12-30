@@ -5,8 +5,8 @@
 //  Created by Ivan Ugrin on W52/12/28/19.
 //
 
-import XCTest
 @testable import Breaking_Bad
+import XCTest
 
 class CharacterListTests: XCTestCase {
     var controller: CharacterListViewController!
@@ -18,7 +18,7 @@ class CharacterListTests: XCTestCase {
 
         guard let vc = UIStoryboard(name: "Main", bundle: Bundle(for: CharacterListViewController.self))
             .instantiateViewController(withIdentifier: String(describing: CharacterListViewController.self)) as? CharacterListViewController else {
-                return XCTFail("Could not instantiate CharacterListViewController from main storyboard")
+            return XCTFail("Could not instantiate CharacterListViewController from main storyboard")
         }
 
         controller = vc
@@ -33,11 +33,11 @@ class CharacterListTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     func test_viewControllerHasValidDatasource() {
         XCTAssert(tblCharacters.dataSource is CharacterListViewController)
     }
-    
+
     func test_tableViewHasCells() {
         let cell = tblCharacters.dequeueReusableCell(withIdentifier: String(describing: CharacterTableViewCell.self))
         XCTAssertNotNil(cell)

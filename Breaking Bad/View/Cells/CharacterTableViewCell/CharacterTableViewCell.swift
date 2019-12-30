@@ -6,6 +6,7 @@
 //
 
 import AlamofireImage
+import Foundation
 import UIKit
 
 class CharacterTableViewCell: UITableViewCell {
@@ -26,11 +27,20 @@ class CharacterTableViewCell: UITableViewCell {
 
     func setup(_ character: Character) {
         lblName.text = character.name
-        lblOccupation.text = character.occupation?.compactMap { "\($0.uppercased()) " }.reduce("", +)
+        lblOccupation.text = character.occupation?.compactMap { "\($0) \(character.occupation?.last != $0 ? "," : "")" }.reduce("", +)
 
         imgCharacter.image = nil
         if let url = character.imageUrl {
             imgCharacter.af_setImage(withURL: url)
+        }
+    }
+
+    func setup(name: String?, imageUrl: URL?) {
+        lblName.text = name
+
+        imgCharacter.image = nil
+        if let imageUrl = imageUrl {
+            imgCharacter.af_setImage(withURL: imageUrl)
         }
     }
 }
